@@ -10,8 +10,18 @@
 
 .links {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 .mainLink {
-  margin-right: 15px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  color: #232134;
+}
+
+.active {
+  color: green;
 }

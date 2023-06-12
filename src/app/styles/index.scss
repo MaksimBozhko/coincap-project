@@ -1,0 +1,19 @@
+@import "reset";
+@import "./variables/global";
+@import "./themes/normal";
+@import "./themes/dark";
+@import "./mixins/mixins";
+
+.app {
+  font: var(--font-m);
+
+  background: var(--bg-color);
+  color: var(--primary-color);
+
+  min-height: 100vh;
+}
+
+.root {
+  @include PageContainer;
+  margin-top: 40px;
+}

@@ -1,13 +1,15 @@
 import React from "react"
-import { Navbar } from "widgets/Navbar/ui/Navbar"
 import { AppRouter } from "./providers/router"
-import "./App.css"
+import "./styles/index.scss"
+import { Header } from "../widgets/Header"
 
 function App() {
   return (
-    <div className={"App"}>
-      <Navbar />
-      <AppRouter />
+    <div className={"app light"}>
+      <Header />
+      <div className={"root"}>
+        <AppRouter />
+      </div>
     </div>
   )
 }

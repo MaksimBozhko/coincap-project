@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 84px;
+  background-color: #FFFFFF;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  max-width: 1146px;
+  padding: 0 15px;
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  .container {
+    justify-content: space-between;
+  }
+}

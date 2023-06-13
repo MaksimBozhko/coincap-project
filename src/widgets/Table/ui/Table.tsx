@@ -4,7 +4,7 @@ import { TableRow } from "./TableRow/TableRow"
 import { TableHeadItem } from "./TableHeadItem"
 import classNames from "shared/lib/classNames/classNames"
 import { useActions } from "../../../shared/hooks/useActions"
-import { coinsThunks } from "../model/slices/slice"
+import { coinsActions, coinsThunks } from "../model/slices/slice"
 import { getCoins } from "../model/slices/selectors"
 import s from "./Table.module.scss"
 import { AddModal } from "./TableRow/modal/addModal/AddModal"
@@ -16,10 +16,11 @@ interface TableProps {
 export const Table = ({ customClass }: TableProps) => {
   const coins = useSelector(getCoins)
   const { getItems } = useActions(coinsThunks)
+  const { setCoins } = useActions(coinsActions)
   const [value, setValue] = useState('')
 
-  const onBuyCoinsHandler = () => {
-
+  const onBuyCoinsHandler = (count: number) => {
+    setCoins({ count, name: value })
   }
   const onCloseModal = () => {
     setValue('')

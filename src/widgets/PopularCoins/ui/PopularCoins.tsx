@@ -6,11 +6,10 @@ import s from './PopularCoins.module.scss'
 
 export const PopularCoins = () => {
   const coins = useSelector(getCoins)
-  console.log(coins.slice(0, 3))
   return (
     <div className={s.block}>
       {coins.slice(0, 3).map(({ symbol, priceUsd }) => (
-        <div>{symbol}: {getPrice(priceUsd)}</div>
+        <div key={symbol}>{symbol}: {getPrice(priceUsd)}</div>
       ))}
     </div>
   )

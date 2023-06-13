@@ -1,6 +1,8 @@
 import React from "react"
 import { ItemType } from "../../model/slices/types"
 import { getRowPrice } from "../../model/helpers/getRowPrice"
+import { NavLink } from "react-router-dom"
+import s from './TableRow.module.scss'
 
 interface TableRowProps {
   data: ItemType
@@ -9,25 +11,30 @@ interface TableRowProps {
 
 export const TableRow = ({ data, cal }: TableRowProps) => {
   const rowArr = getRowPrice(data)
-  // const rowArr = ['85', 'FTX Token', '$0.83', '$272.26m', '$0.82', '$328.90m', '1.91m', '2.82', '+']
-  const handleCellClick = () => {
+  const handleCellPlusClick = () => {
     cal(data.name)
-    console.log("Clicked on the last cell");
-  };
+  }
   return (
     <>
       <tr>
         {rowArr.map((item, index) => {
           if (index === rowArr.length - 1) {
             return (
-              <td key={`${item}_${index}`} onClick={handleCellClick}>
+              <td key={`${item}_${index}`} onClick={handleCellPlusClick}>
                 {item}
               </td>
-            );
+            )
           }
-          return <td key={`${item}_${index}`}>{item}</td>;
+          if (index === 1) {
+            return <td key={`${item}_${index}`} >
+              <NavLink to={"about"}>
+                {item}
+              </NavLink>
+            </td>
+          }
+        return <td key={`${item}_${index}`}>{item}</td>
         })}
       </tr>
     </>
-  );
+  )
 }

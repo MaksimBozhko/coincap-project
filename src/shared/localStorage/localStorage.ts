@@ -1,18 +1,18 @@
+import { CaseItemType } from "../../widgets/Table/model/slices/types"
+
 export const loadState = () => {
   try {
-    const persistedTodoString = localStorage.getItem("selected-vacancy")
+    const persistedTodoString = localStorage.getItem("caseCoins")
     if (persistedTodoString === null) return undefined
-    return JSON.parse(persistedTodoString)
+    return { coins: { case: JSON.parse(persistedTodoString), coins: [] }}
   } catch (err) {
     return undefined
   }
 }
 
-type SelectedState = {
-  selected: any[]
-}
+type SelectedState = CaseItemType[]
 
-export const saveState = (stateName: string ='', state?: SelectedState) => {
+export const saveState = (stateName: string = "", state?: SelectedState) => {
   try {
     const serializedState = JSON.stringify(state)
     localStorage.setItem(stateName, serializedState)

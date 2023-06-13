@@ -1,17 +1,17 @@
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import s from "./AddModal.module.scss"
 import { ReactComponent as Close } from "app/img/close.svg"
-import classNames from "../../../../../../shared/lib/classNames/classNames"
-import { Modal } from "../../../../../../shared/modal/Modal"
+import classNames from "shared/lib/classNames/classNames"
+import { Modal } from "shared/modal/Modal"
 import SuperButton from "shared/components/superButton/SuperButton"
-import { Input } from "../../../../../../shared/components/Input/Input"
+import { Input } from "shared/components/Input/Input"
 
 type DeletePropsType = {
   name: string
   isOpen?: boolean
   onClose?: () => void
   className?: string
-  callback?: () => void
+  callback?: (count: number) => void
 }
 
 export const AddModal: FC<DeletePropsType> = ({
@@ -21,6 +21,8 @@ export const AddModal: FC<DeletePropsType> = ({
                                                 className,
                                                 callback
                                               }) => {
+  const [valueInput, setValueInput] = useState("")
+
   const onCloseHandler = () => {
     if (onClose) {
       onClose()
@@ -28,7 +30,7 @@ export const AddModal: FC<DeletePropsType> = ({
   }
   const onAddHandler = () => {
     if (callback) {
-      callback()
+      callback(+valueInput)
     }
     if (onClose) {
       onClose()
@@ -45,7 +47,11 @@ export const AddModal: FC<DeletePropsType> = ({
         <div className={s.close} onClick={onCloseHandler}><Close /></div>
       </div>
       <span className={s.text}>Do you really want to buy {name}?</span>
-      <Input className={s.input}/>
+      <Input
+        className={s.input}
+        value={valueInput}
+        setValue={setValueInput}
+      />
       <div className={s.btnBlock}>
         <SuperButton className={s.btn}
                      xType={"secondary"}

@@ -1,10 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { createAppAsyncThunk } from "../../../../shared/utils/create-app-async-thunk"
 import { coinsAPI } from "../../api/api"
-import { ItemType } from "./types"
+import { CaseItemType, ItemType } from "./types"
 
 export const initialState = {
-  coins: [] as ItemType[]
+  coins: [] as ItemType[],
+  case: [] as CaseItemType[]
 }
 
 //thunks
@@ -21,7 +22,20 @@ const getItems = createAppAsyncThunk("coins/getItems", async (_, { rejectWithVal
 const slice = createSlice({
   name: "coins",
   initialState,
-  reducers: {},
+  reducers: {
+    setCoins: (state, action: PayloadAction<{ count: number, name: string }>) => {
+      const { count, name } = action.payload
+      const coin = state.coins.find((item) => item.name === name)
+      if (coin) {
+        const newCoin = {
+          ...coin,
+          count,
+        }
+        state.case.push(newCoin)
+      }
+
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(getItems.fulfilled, (state, { payload }) => {

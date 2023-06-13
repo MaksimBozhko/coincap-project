@@ -3,6 +3,7 @@ import s from "./Header.module.scss"
 import { Navbar } from "../../Navbar"
 import { PopularCoins } from "../../PopularCoins"
 import { Modal } from "../../../shared/modal/Modal"
+import { StateCase } from "../../StateCase"
 
 export const Header = () => {
   // const pricesWs = new WebSocket('wss://ws.coincap.io/prices?assets=bitcoin,ethereum,monero,litecoin')
@@ -16,6 +17,7 @@ export const Header = () => {
         <div>logo</div>
         <PopularCoins />
         <Navbar />
+        <StateCase />
       </div>
     </div>
   )

@@ -3,9 +3,9 @@ import { getMarketCapPrice } from "./getMarketCapPrice"
 import { ItemType } from "../slices/types"
 import { getVolumePrice } from "./getVolumePrice"
 
-export function getRowPrice(data: ItemType[]) {
+export function getRowPrice(data: ItemType) {
   const entriesArr = Object.entries(data) as string[][]
-  return entriesArr.map(([key, value]) => {
+  const result =entriesArr.filter(([key, value]) => key !== 'symbol').map(([key, value]) => {
     if (key === 'priceUsd') {
       return getPrice(value)
     }
@@ -29,4 +29,6 @@ export function getRowPrice(data: ItemType[]) {
     }
     return value
   })
+  const element = "+";
+  return result.concat(element)
 }

@@ -12,7 +12,7 @@ export type ItemType = {
   supply: string
   volumeUsd24Hr: string
   changePercent24Hr: string
-  // symbol: string
+  symbol: string
   // supply: string
   // maxSupply: string
 }

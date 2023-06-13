@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
   height: 84px;
   background-color: #FFFFFF;
@@ -9,6 +9,7 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: auto;
   max-width: 1146px;
   padding: 0 15px;

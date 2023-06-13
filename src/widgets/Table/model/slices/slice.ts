@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { createAppAsyncThunk } from "../../../../shared/utils/create-app-async-thunk"
 import { coinsAPI } from "../../api/api"
-import { CoinsType, ItemType } from "./types"
+import { ItemType } from "./types"
 
 export const initialState = {
-  coins: [] as CoinsType[]
+  coins: [] as ItemType[]
 }
 
 //thunks
@@ -26,8 +26,6 @@ const slice = createSlice({
     builder
       .addCase(getItems.fulfilled, (state, { payload }) => {
         state.coins = payload.map((item: ItemType) => ({
-          id: item.rank,
-          items: {
             rank: item.rank,
             name: item.name,
             priceUsd: item.priceUsd,
@@ -35,9 +33,10 @@ const slice = createSlice({
             vwap24Hr: item.vwap24Hr,
             supply: item.supply,
             volumeUsd24Hr: item.volumeUsd24Hr,
-            changePercent24Hr: item.changePercent24Hr
+            changePercent24Hr: item.changePercent24Hr,
+            symbol: item.symbol
           }
-        }))
+        ))
       })
   }
 })

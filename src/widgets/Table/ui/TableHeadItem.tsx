@@ -1,11 +1,13 @@
 import React from "react"
 
-const TableHeadItem = ({ item }: any) => {
+interface TableHeadItemProps {
+  item: string
+}
+
+export const TableHeadItem = ({ item } : TableHeadItemProps) => {
   return (
     <td title={item}>
       {item}
     </td>
   )
 }
-
-export default TableHeadItem

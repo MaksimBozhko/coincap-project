@@ -1,60 +1,41 @@
-import React from "react";
-import TableRow from "./TableRow";
-import TableHeadItem from "./TableHeadItem";
-import s from './Table.module.scss'
+import React, { useEffect } from "react"
+import { useSelector } from "react-redux"
+import { TableRow } from "./TableRow"
+import { TableHeadItem } from "./TableHeadItem"
 import classNames from "shared/lib/classNames/classNames"
+import { useActions } from "../../../shared/hooks/useActions"
+import { coinsThunks } from "../model/slices/slice"
+import { getCoins } from "../model/slices/selectors"
+import s from "./Table.module.scss"
 
 interface TableProps {
   customClass?: string
 }
 
 export const Table = ({ customClass }: TableProps) => {
-  const theadData = ["Name", "Email", "Date"];
+  const coins = useSelector(getCoins)
+  const { getItems } = useActions(coinsThunks)
 
-  const tbodyData = [
-    {
-      id: "1",
-      items: ["John", "john@email.com", "01/01/2021"],
-    },
-    {
-      id: "2",
-      items: ["Sally", "sally@email.com", "12/24/2020"],
-    },
-    {
-      id: "3",
-      items: ["Maria", "maria@email.com", "12/01/2020"],
-    },
-    {
-      id: "2",
-      items: ["Sally", "sally@email.com", "12/24/2020"],
-    },
-    {
-      id: "3",
-      items: ["Maria", "maria@email.com", "12/01/2020"],
-    },
-    {
-      id: "2",
-      items: ["Sally", "sally@email.com", "12/24/2020"],
-    },
-    {
-      id: "3",
-      items: ["Maria", "maria@email.com", "12/01/2020"],
-    },
-  ];
+  useEffect(() => {
+      getItems({})
+  }, [])
+
+  const theadData = ["Rank", "Name", "Price", "MarketCap", "VWAP(24Hr)", "Supply", "Volume(24Hr)", "Change(24Hr)"]
+
   return (
     <table className={classNames(s.table, [customClass])}>
       <thead className={s.thead}>
       <tr>
-        {theadData.map((h: any) => {
-          return <TableHeadItem key={h} item={h} />;
+        {theadData.map((name) => {
+          return <TableHeadItem key={name} item={name} />
         })}
       </tr>
       </thead>
       <tbody>
-      {tbodyData.map((item: any) => {
-        return <TableRow key={item.id} data={item.items} />;
+      {coins.map((item) => {
+        return <TableRow key={item.id} id={item.id} data={item.items} />
       })}
       </tbody>
     </table>
-  );
-};
+  )
+}

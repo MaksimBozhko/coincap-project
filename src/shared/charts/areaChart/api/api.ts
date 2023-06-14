@@ -1,5 +1,5 @@
 import { instance } from "app/api/api"
-import { RequestType } from "../areaChart/model/slices/types"
+import { RequestType } from "../model/slices/types"
 
 export const chartAPI = {
   data({ id, interval, end, start }: RequestType) {

@@ -11,6 +11,7 @@ import {
   Legend
 } from "chart.js"
 import { Line } from "react-chartjs-2"
+import { changeMilsecToDate } from "../model/changeMilsecToDate"
 
 ChartJS.register(
   CategoryScale,
@@ -38,8 +39,7 @@ export function AreaChart({ priceUsd, time, name }: AreaChartType) {
       },
     }
   }), [])
-  const labels = time
-
+  const labels = useMemo(() => time.map((time) => changeMilsecToDate(time)), [time])
   const data =  useMemo( () => ({
     labels,
     datasets: [

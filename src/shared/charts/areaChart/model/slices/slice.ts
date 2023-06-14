@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { InitStateType, RequestType, ResponseDataHistoryType } from "./types"
-import { chartAPI } from "../../../api/api"
+import { chartAPI } from "../../api/api"
 import { createAppAsyncThunk } from "../../../../utils/create-app-async-thunk"
 
 export const initialState: InitStateType = {

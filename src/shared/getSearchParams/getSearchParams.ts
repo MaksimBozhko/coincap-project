@@ -1,8 +1,9 @@
-export const getSearchParams = (searchParams: any) => {
-  const search: any = {}
-  for (let [key, value] of searchParams.entries()) {
+export const getSearchParams = (searchParams: URLSearchParams): Record<string, string> => {
+  const search: Record<string, string> = {};
 
+  for (let [key, value] of searchParams.entries()) {
     search[key] = value;
   }
-  return search
+
+  return search;
 };

@@ -35,20 +35,17 @@ export const Pagination = ({
   const onClickSelectedPage = (pageNumber: number) => {
     onPageChange && onPageChange(pageNumber)
     if (pageNumber) {
-      // @ts-ignore
       setSearchParams({ page: pageNumber })
     }
   }
 
   const onClickLeftIconHandler = () => {
     setPortionNumber(portionNumber - 1)
-    // @ts-ignore
     setSearchParams({ page: rightPortionPageNumber - portionSize })
   }
 
   const onClickRightIconHandler = () => {
     setPortionNumber(portionNumber + 1)
-    // @ts-ignore
     setSearchParams({ page: leftPortionPageNumber + portionSize })
   }
   return <div className={s.pagination}>
@@ -63,7 +60,7 @@ export const Pagination = ({
         .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
         .map((p) => <span key={p}
                           onClick={() => onClickSelectedPage(p)}
-                          className={classNames(s.page, { [s.selected]: page == p })}>
+                          className={classNames(s.page, { [s.selected]: +page == p })}>
         {p}</span>)
     }
     <button

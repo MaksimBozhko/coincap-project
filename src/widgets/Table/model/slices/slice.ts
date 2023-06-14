@@ -1,7 +1,7 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit"
 import { createAppAsyncThunk } from "shared/utils/create-app-async-thunk"
 import { coinsAPI } from "../../api/api"
-import { InitStateType, ItemType, SetCoinsType } from "./types"
+import { InitStateType, ItemType, QueryParamType, SetCoinsType } from "./types"
 import { chartThunks } from "shared/charts/areaChart/model/slices/slice"
 import { RequestType } from "shared/charts/areaChart/model/slices/types"
 
@@ -13,9 +13,10 @@ export const initialState: InitStateType = {
 }
 
 //thunks
-const getItems = createAppAsyncThunk("coins/getItems", async (_, { rejectWithValue }) => {
+const getItems = createAppAsyncThunk<any, QueryParamType>
+("coins/getItems", async (arg, { rejectWithValue }) => {
   try {
-    const res = await coinsAPI.items()
+    const res = await coinsAPI.items(arg)
     return res.data.data
   } catch (e) {
     return rejectWithValue(e)

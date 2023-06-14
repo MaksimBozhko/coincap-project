@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useRef, useState, MouseEvent, useEffect } from "react"
-import classNames, { Mods } from "shared/lib/classNames/classNames";
-import { Portal } from "../portal/Portal";
+import classNames, { Mods } from "shared/lib/classNames/classNames"
+import { Portal } from "../portal/Portal"
 import s from "./modal.module.scss"
 
 
@@ -21,7 +21,7 @@ export const Modal = ({
   // eslint-disable-next-line no-undef
   const timerRef = useRef<NodeJS.Timeout>()
 
-  const closeHandler = useCallback( () => {
+  const closeHandler = useCallback(() => {
     if (onClose) {
       setIsClosing(true)
       timerRef.current = setTimeout(() => {
@@ -35,7 +35,7 @@ export const Modal = ({
     e.stopPropagation()
   }
 
-  const onKeyDown = useCallback( (e: KeyboardEvent) => {
+  const onKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") {
       closeHandler()
     }

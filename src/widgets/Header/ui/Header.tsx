@@ -25,7 +25,6 @@ export const Header = () => {
       <div className={s.container}>
         <PopularCoins />
         <SuperButton className={s.btn} onClick={clickBtnHandler}>WALLET</SuperButton>
-        {/*<Navbar />*/}
         <StateCase />
       </div>
       {!!value && (

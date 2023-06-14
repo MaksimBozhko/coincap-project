@@ -1,0 +1,33 @@
+.pagination {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    .page {
+        width: 32px;
+        height: 32px;
+        color: var(--primaryColor);;
+        float: left;
+        margin: 0 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: background-color .3s;
+        background: #FFFFFF;
+        border: 1px solid #D5D6DC;
+        border-radius: 4px;
+    }
+}
+
+.pagination .page:hover {background-color: #ddd;}
+.page.selected {
+    background: var(--secondary-color);
+    color: #FFFFFF;
+}
+.icon {
+    fill: #7B7C88;
+}
+.disabled {
+    fill: #D5D6DC;
+}
+

@@ -13,11 +13,12 @@ import {
 } from "shared/charts/areaChart/model/slices/selectors"
 import { getCurrentTimeinterval } from "shared/charts/areaChart/model/getTimeInterval"
 import { SelectBlock } from "widgets/SelectBlock/ui/SelectBlock"
-import { DAYS_VALUE, INTERVAL_VALUE } from "../../../widgets/SelectBlock/model/constants"
-import { getCoin } from "../../../widgets/Table/model/slices/selectors"
-import s from './CoinPage.module.scss'
-import { getPrice } from "../../../widgets/Table/model/helpers/getPrice"
-import { getVolumePrice } from "../../../widgets/Table/model/helpers/getVolumePrice"
+import { DAYS_VALUE, INTERVAL_VALUE } from "widgets/SelectBlock/model/constants"
+import { getCoin } from "widgets/Table/model/slices/selectors"
+import s from "./CoinPage.module.scss"
+import { getPrice } from "widgets/Table/model/helpers/getPrice"
+import { getVolumePrice } from "widgets/Table/model/helpers/getVolumePrice"
+import { GoBackButton } from "shared/GoBackButton/GoBackButton"
 
 const CoinPage = () => {
   const { getItem } = useActions(coinsThunks)
@@ -36,17 +37,18 @@ const CoinPage = () => {
 
   return (
     <div className={s.page}>
-    <div className={s.box}>
-      <div>
-        <p className={s.title}>{item.name}({item.symbol})</p>
-        <p className={s.time}>{getTime()}</p>
+      <GoBackButton title={'back'}/>
+      <div className={s.box}>
+        <div>
+          <p className={s.title}>{item.name}({item.symbol})</p>
+          <p className={s.time}>{getTime()}</p>
+        </div>
+        <div className={s.info}>
+          <p>price: {getPrice(item.priceUsd)}</p>
+          <p>volume(24Hr): {getVolumePrice(item.volumeUsd24Hr)}</p>
+          <p>change: {Number(item.changePercent24Hr).toFixed(2)}</p>
+        </div>
       </div>
-      <div className={s.info}>
-        <p>price: {getPrice(item.priceUsd)}</p>
-        <p>volume(24Hr): {getVolumePrice(item.volumeUsd24Hr)}</p>
-        <p>change: {Number(item.changePercent24Hr).toFixed(2)}</p>
-      </div>
-    </div>
       <SelectBlock interval={interval!.value} dayAgo={dayAgo!.value} />
       <AreaChart name={item.name} priceUsd={priceUsd} time={time} />
     </div>

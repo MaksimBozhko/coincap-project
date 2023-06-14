@@ -9,8 +9,6 @@ export type ItemType = {
   volumeUsd24Hr: string
   changePercent24Hr: string
   symbol: string
-  // supply: string
-  // maxSupply: string
 }
 
 export type CaseItemType = {
@@ -35,4 +33,10 @@ export type InitStateType = {
 export type SetCoinsType = {
   count: number
   name: string
+}
+
+export type QueryParamType = {
+  limit: number
+  search?: string
+  offset?: number
 }

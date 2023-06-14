@@ -2,7 +2,6 @@ import React from "react"
 import { ItemType } from "../../model/slices/types"
 import { getRowPrice } from "../../model/helpers/getRowPrice"
 import { NavLink } from "react-router-dom"
-import s from './TableRow.module.scss'
 
 interface TableRowProps {
   data: ItemType
@@ -27,7 +26,7 @@ export const TableRow = ({ data, cal }: TableRowProps) => {
           }
           if (index === 1) {
             return <td key={`${item}_${index}`} >
-              <NavLink to={"about"}>
+              <NavLink to={data.id}>
                 {item}
               </NavLink>
             </td>

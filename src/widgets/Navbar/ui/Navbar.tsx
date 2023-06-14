@@ -14,7 +14,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     <div className={classNames(s.Navbar, {}, [])}>
       <div className={s.links}>
         <NavLink to={'/'} className={linkClass}>Coins</NavLink>
-        <NavLink to={'/case'} className={linkClass}>Case</NavLink>
+        <NavLink to={'/wallet'} className={linkClass}>wallet</NavLink>
       </div>
     </div>
   )

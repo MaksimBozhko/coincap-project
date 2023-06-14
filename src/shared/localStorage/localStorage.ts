@@ -1,10 +1,10 @@
-import { CaseItemType } from "../../widgets/Table/model/slices/types"
+import { CaseItemType, ItemType } from "../../widgets/Table/model/slices/types"
 
 export const loadState = () => {
   try {
     const persistedTodoString = localStorage.getItem("caseCoins")
     if (persistedTodoString === null) return undefined
-    return { coins: { case: JSON.parse(persistedTodoString), coins: [] }}
+    return { coins: { case: JSON.parse(persistedTodoString), coins: [], coin: {} as ItemType }}
   } catch (err) {
     return undefined
   }

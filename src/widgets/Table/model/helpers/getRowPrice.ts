@@ -5,7 +5,7 @@ import { getVolumePrice } from "./getVolumePrice"
 
 export function getRowPrice(data: ItemType) {
   const entriesArr = Object.entries(data) as string[][]
-  const result =entriesArr.filter(([key, value]) => key !== 'symbol').map(([key, value]) => {
+  const result = entriesArr.filter(([key]) => key !== 'symbol' && key !== 'id' ).map(([key, value]) => {
     if (key === 'priceUsd') {
       return getPrice(value)
     }

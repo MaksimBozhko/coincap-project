@@ -1,9 +1,11 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import { AnyAction, combineReducers, configureStore, ThunkDispatch } from "@reduxjs/toolkit"
 import { loadState, saveState } from "shared/localStorage/localStorage"
 import { coinsSlice } from "../../widgets/Table/model/slices/slice"
+import { chartSlice } from "../../shared/charts/areaChart/model/slices/slice"
 
 const rootReducer = combineReducers({
-  coins: coinsSlice
+  coins: coinsSlice,
+  chart: chartSlice
 })
 
 export const store = configureStore({
@@ -18,3 +20,4 @@ store.subscribe(() => {
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof configureStore>;
 export type AppDispatch = AppStore["dispatch"];
+export type AppThunkDispatch = ThunkDispatch<RootState, any, AnyAction>

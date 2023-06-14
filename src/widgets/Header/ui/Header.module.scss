@@ -16,6 +16,11 @@
   width: 100%;
 }
 
+.btn {
+  max-width: 100px;
+  width: 100%;
+}
+
 @media (max-width: 500px) {
   .container {
     justify-content: space-between;

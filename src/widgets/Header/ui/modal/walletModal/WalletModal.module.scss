@@ -1,0 +1,52 @@
+@import "src/app/styles/mixins/mixins";
+
+.titleBlock {
+  @include FlexCenter;
+
+  .title {
+    @include FontStyle(500, 20px, 22px);
+    margin-bottom: 30px;
+  }
+
+  .title::after {
+    content: "";
+    width: 400px;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    border-top: 1px solid #D9D9D9;
+  }
+
+  .close {
+    align-self: flex-start;
+    cursor: pointer;
+  }
+}
+
+.coin {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  font-size: 18px;
+  .info {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+.text {
+  @include FontStyle(500, 20px, 22px);
+}
+
+.btnBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  .btn {
+    width: 90px;
+  }
+}

@@ -14,7 +14,7 @@ type DeletePropsType = {
   isOpen?: boolean
   onClose?: () => void
   className?: string
-  callback?: (count: number) => void
+  callback?: (count: string) => void
 }
 
 export const WalletModal: FC<DeletePropsType> = ({
@@ -25,20 +25,19 @@ export const WalletModal: FC<DeletePropsType> = ({
                                                 callback
                                               }) => {
   const items = useSelector((state: RootState) => state.coins.case)
-  const [valueInput, setValueInput] = useState("")
 
   const onCloseHandler = () => {
     if (onClose) {
       onClose()
     }
   }
-  const onAddHandler = () => {
+  const onAddHandler = (name: string) => {
     if (callback) {
-      callback(+valueInput)
+      callback(name)
     }
-    if (onClose) {
-      onClose()
-    }
+    // if (onClose) {
+    //   onClose()
+    // }
   }
   return (
     <Modal
@@ -54,14 +53,13 @@ export const WalletModal: FC<DeletePropsType> = ({
         {items.map((coin) => (
           <div className={s.coin}>
             <div>
-              <p className={s.name}>{coin.name}</p>
-              <p className={s.rank}>{coin.symbol}</p>
+              <p className={s.name}>{coin.name}({coin.symbol})</p>
             </div>
             <div className={s.info}>
               <p>{getPrice((+coin.priceUsd * coin.count).toString())}</p>
               <p>{Number(coin.changePercent24Hr).toFixed(2)}</p>
             </div>
-            <div>
+            <div onClick={() => onAddHandler(coin.name)}>
               -
             </div>
           </div>

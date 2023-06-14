@@ -10,7 +10,7 @@ export const StateCase = () => {
     <div>
       <div>price case: {casePrice}</div>
       <div>dif: {casePrice - currentPrice}</div>
-      <div>per: {(casePrice - currentPrice) * 100 / casePrice}</div>
+      <div>per: {(casePrice - currentPrice) * 100 / casePrice || 0}</div>
     </div>
   )
 }

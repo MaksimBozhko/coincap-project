@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit"
 import { createAppAsyncThunk } from "shared/utils/create-app-async-thunk"
 import { coinsAPI } from "../../api/api"
 import { InitStateType, ItemType, SetCoinsType } from "./types"
@@ -42,10 +42,16 @@ const slice = createSlice({
     setCoins: (state, action: PayloadAction<SetCoinsType>) => {
       const { count, name } = action.payload
       const coin = state.coins.find((item) => item.name === name)
-      if (coin) {
+      const isMatch = state.case.find((item) => item.name === coin?.name)
+      if (isMatch) {
+        isMatch.count += count
+      } else if (coin) {
         const newCoin = { ...coin, count }
         state.case.push(newCoin)
       }
+    },
+    removeCoins: (state, action: PayloadAction<string>) => {
+      state.case = state.case.filter(item => item.name !== action.payload)
     }
   },
   extraReducers: builder => {

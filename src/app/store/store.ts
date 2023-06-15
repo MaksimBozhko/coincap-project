@@ -1,15 +1,21 @@
-import { AnyAction, combineReducers, configureStore, ThunkDispatch } from "@reduxjs/toolkit"
+import { AnyAction, combineReducers, configureStore, getDefaultMiddleware, ThunkDispatch } from "@reduxjs/toolkit"
 import { loadState, saveState } from "shared/localStorage/localStorage"
 import { coinsSlice } from "../../widgets/Table/model/slices/slice"
 import { chartSlice } from "../../shared/charts/areaChart/model/slices/slice"
+import { coinApi } from 'widgets/Table/model/slices/coinApi'
+import { createLogger } from 'redux-logger';
+
+const middleware = [...getDefaultMiddleware(), createLogger()];
 
 const rootReducer = combineReducers({
   coins: coinsSlice,
-  chart: chartSlice
+  chart: chartSlice,
+  [coinApi.reducerPath]: coinApi.reducer,
 })
 
 export const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(coinApi.middleware),
   preloadedState: loadState()
 })
 

@@ -1,3 +1,39 @@
+.red {
+  background-color: #f1f1f1; // Здесь можно указать начальный цвет фона
 
+  // Анимация заднего фона
+  animation: background-red 0.5s linear infinite;
+  animation-iteration-count: 1;
 
+  @keyframes background-red {
+    0% {
+      background-color: #f1f1f1; // Начальный цвет фона
+    }
+    50% {
+      background-color: #fd8282; // Промежуточный цвет фона
+    }
+    100% {
+      background-color: #f1f1f1; // Конечный цвет фона
+    }
+  }
+}
 
+.green {
+  background-color: #f1f1f1; // Здесь можно указать начальный цвет фона
+
+  // Анимация заднего фона
+  animation: background-green 0.5s linear infinite;
+  animation-iteration-count: 1;
+
+  @keyframes background-green {
+    0% {
+      background-color: #f1f1f1; // Начальный цвет фона
+    }
+    50% {
+      background-color: #76ff6d; // Промежуточный цвет фона
+    }
+    100% {
+      background-color: #f1f1f1; // Конечный цвет фона
+    }
+  }
+}

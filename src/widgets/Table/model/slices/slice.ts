@@ -9,7 +9,7 @@ import { RequestType } from "shared/charts/areaChart/model/slices/types"
 export const initialState: InitStateType = {
   coins: [],
   case: [],
-  coin: {} as ItemType
+  coin: {} as ItemType,
 }
 
 //thunks
@@ -53,6 +53,12 @@ const slice = createSlice({
     },
     removeCoins: (state, action: PayloadAction<string>) => {
       state.case = state.case.filter(item => item.name !== action.payload)
+    },
+    setPrices: (state, action: PayloadAction<{ bitcoin: string }>) => {
+      state.coins = state.coins.map((coin) => coin.name.toLowerCase() === "bitcoin"
+        ? { ...coin, priceUsd: action.payload["bitcoin"] }
+        : coin)
+
     }
   },
   extraReducers: builder => {

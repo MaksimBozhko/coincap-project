@@ -30,6 +30,7 @@ export type InitStateType = {
   coin: ItemType
 }
 
+
 export type SetCoinsType = {
   count: number
   name: string

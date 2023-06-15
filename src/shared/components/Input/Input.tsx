@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react"
+import React, { ChangeEvent } from "react"
 import s from "./Input.module.scss"
 import classNames from "../../lib/classNames/classNames"
 
@@ -15,7 +15,5 @@ export const Input = ({ className, setValue, value }: InputProps) => {
       setValue(inputValue)
     }
   }
-  return (
-    <input className={classNames(s.input, [className])} value={value} onChange={clickInputHandler} />
-  )
+  return <input className={classNames(s.input, [className])} value={value} onChange={clickInputHandler} />
 }

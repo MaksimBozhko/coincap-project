@@ -1,5 +1,5 @@
 @import "../../../app/styles/mixins/mixins";
 
 .block {
-  @include FlexCenter('row', 'space-between', 'center', 20px);
+  @include FlexCenter("row", "space-between", "center", 20px);
 }

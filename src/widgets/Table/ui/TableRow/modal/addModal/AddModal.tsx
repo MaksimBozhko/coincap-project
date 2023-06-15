@@ -1,26 +1,13 @@
 import React, { FC, useState } from "react"
 import s from "./AddModal.module.scss"
-import { ReactComponent as Close } from "app/img/close.svg"
+import { ReactComponent as Close } from "widgets/Header/ui/modal/walletModal/img/close.svg"
 import classNames from "shared/lib/classNames/classNames"
 import { Modal } from "shared/modal/Modal"
 import SuperButton from "shared/components/superButton/SuperButton"
 import { Input } from "shared/components/Input/Input"
+import { DeletePropsType } from "../../../../model/types"
 
-type DeletePropsType = {
-  name: string
-  isOpen?: boolean
-  onClose?: () => void
-  className?: string
-  callback?: (count: number) => void
-}
-
-export const AddModal: FC<DeletePropsType> = ({
-                                                name,
-                                                isOpen,
-                                                onClose,
-                                                className,
-                                                callback
-                                              }) => {
+export const AddModal: FC<DeletePropsType> = ({ name, isOpen, onClose, className, callback }) => {
   const [valueInput, setValueInput] = useState("")
 
   const onCloseHandler = () => {
@@ -37,31 +24,22 @@ export const AddModal: FC<DeletePropsType> = ({
     }
   }
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      className={classNames("", {}, [className])}
-    >
+    <Modal isOpen={isOpen} onClose={onClose} className={classNames("", {}, [className])}>
       <div className={s.titleBlock}>
         <h5 className={s.title}>{name}</h5>
-        <div className={s.close} onClick={onCloseHandler}><Close /></div>
+        <div className={s.close} onClick={onCloseHandler}>
+          <Close />
+        </div>
       </div>
       <span className={s.text}>Do you really want to buy {name}?</span>
-      <Input
-        className={s.input}
-        value={valueInput}
-        setValue={setValueInput}
-      />
+      <Input className={s.input} value={valueInput} setValue={setValueInput} />
       <div className={s.btnBlock}>
-        <SuperButton className={s.btn}
-                     xType={"secondary"}
-                     onClick={onCloseHandler}
-        >
-          Cancel</SuperButton>
-        <SuperButton className={s.btn}
-                     onClick={onAddHandler}
-        >
-          Buy</SuperButton>
+        <SuperButton className={s.btn} xType={"secondary"} onClick={onCloseHandler}>
+          Cancel
+        </SuperButton>
+        <SuperButton className={s.btn} onClick={onAddHandler}>
+          Buy
+        </SuperButton>
       </div>
     </Modal>
   )

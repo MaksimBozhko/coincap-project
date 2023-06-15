@@ -1,5 +1,5 @@
 import { instance } from "app/api/api"
-import { QueryParamType } from "../model/slices/types"
+import { QueryParamType } from "../model/types"
 
 export const coinsAPI = {
   items({ limit, offset }: QueryParamType) {
@@ -12,5 +12,5 @@ export const coinsAPI = {
   },
   item(id: string) {
     return instance.get(`assets/${id}`)
-  },
+  }
 }

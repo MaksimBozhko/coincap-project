@@ -1,7 +1,6 @@
 .red {
   background-color: #f1f1f1; // Здесь можно указать начальный цвет фона
 
-  // Анимация заднего фона
   animation: background-red 0.5s linear infinite;
   animation-iteration-count: 1;
 
@@ -21,11 +20,10 @@
 .green {
   background-color: #f1f1f1;
 
-  // Анимация заднего фона
   animation: background-green 0.5s linear infinite;
   animation-iteration-count: 1;
 
-  @keyframes background-green{
+  @keyframes background-green {
     0% {
       background-color: #f1f1f1;
     }
@@ -36,4 +34,9 @@
       background-color: #f1f1f1;
     }
   }
+}
+
+.link {
+  color: var(--primary-color);
+  font-size: 17px;
 }

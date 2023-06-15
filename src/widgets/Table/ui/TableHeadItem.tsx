@@ -1,13 +1,6 @@
 import React from "react"
+import { TableHeadItemProps } from "../model/types"
 
-interface TableHeadItemProps {
-  item: string
-}
-
-export const TableHeadItem = ({ item } : TableHeadItemProps) => {
-  return (
-    <td title={item}>
-      {item}
-    </td>
-  )
+export const TableHeadItem = ({ item }: TableHeadItemProps) => {
+  return <td title={item}>{item}</td>
 }

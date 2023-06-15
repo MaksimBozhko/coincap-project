@@ -1,7 +1,7 @@
 $char-w: 1ch;
-$gap: .5*$char-w;
+$gap: 0.5 * $char-w;
 $n-char: 7;
-$in-w: $n-char*($char-w + $gap);
+$in-w: $n-char * ($char-w + $gap);
 
 input {
   display: block;
@@ -9,10 +9,8 @@ input {
   margin: 25px auto auto;
   padding: 0;
   width: $in-w;
-  background: repeating-linear-gradient(90deg,
-          dimgrey 0, dimgrey $char-w,
-          transparent 0, transparent $char-w + $gap)
-  0 100%/ #{$in-w - $gap} 2px no-repeat;
+  background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey $char-w, transparent 0, transparent $char-w + $gap) 0
+    100% / #{$in-w - $gap} 2px no-repeat;
   font: 3ch droid sans mono, consolas, monospace;
   letter-spacing: $gap;
 

@@ -30,7 +30,6 @@ export type InitStateType = {
   coin: ItemType
 }
 
-
 export type SetCoinsType = {
   count: number
   name: string
@@ -46,3 +45,21 @@ export type TableRowProps = {
   data: ItemType
   setValue: (name: string) => void
 }
+
+export type TableProps = {
+  className?: string
+}
+
+export type TableHeadItemProps = {
+  item: string
+}
+
+export type DeletePropsType = {
+  name: string
+  isOpen?: boolean
+  onClose?: () => void
+  className?: string
+  callback?: (count: number) => void
+}
+
+export type PricesType = { [key: string]: string }

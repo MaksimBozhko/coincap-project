@@ -11,15 +11,17 @@ export const initialState: InitStateType = {
 }
 
 //thunks
-const getHistoryData = createAppAsyncThunk<ResponseDataHistoryType, RequestType>("chart/history", async (data, { rejectWithValue }) => {
-  try {
-
-    const res = await chartAPI.data(data)
-    return res.data.data
-  } catch (e) {
-    return rejectWithValue(e)
+const getHistoryData = createAppAsyncThunk<ResponseDataHistoryType, RequestType>(
+  "chart/history",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await chartAPI.data(data)
+      return res.data.data
+    } catch (e) {
+      return rejectWithValue(e)
+    }
   }
-})
+)
 
 const slice = createSlice({
   name: "chart",
@@ -33,11 +35,10 @@ const slice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder
-      .addCase(getHistoryData.fulfilled, (state, { payload }) => {
-        state.priceUsd = payload.map(({ priceUsd }) => priceUsd)
-        state.time = payload.map(({ time }) => time)
-      })
+    builder.addCase(getHistoryData.fulfilled, (state, { payload }) => {
+      state.priceUsd = payload.map(({ priceUsd }) => priceUsd)
+      state.time = payload.map(({ time }) => time)
+    })
   }
 })
 

@@ -1,6 +1,6 @@
 import { DAYS_VALUEType, INTERVAL_VALUEType } from "./types"
 
-export const INTERVAL_VALUE: INTERVAL_VALUEType[] =[
+export const INTERVAL_VALUE: INTERVAL_VALUEType[] = [
   { value: "1", title: "m5" },
   { value: "3", title: "m15" },
   { value: "4", title: "m30" },

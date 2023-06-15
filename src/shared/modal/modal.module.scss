@@ -16,7 +16,6 @@
     height: 100%;
     transition: 0.8s transform;
     background-color: rgba(0, 0, 0, 0.4);
-
   }
 }
 
@@ -25,22 +24,19 @@
   opacity: 1;
   z-index: 1;
 
-
   .content {
     transform: scale(1);
     filter: drop-shadow(0px 0px 40px #646669);
     width: 400px;
     min-height: 240px;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     position: relative;
   }
 }
-
 
 .isClosing {
   .content {
     transform: scale(0.3);
   }
 }
-

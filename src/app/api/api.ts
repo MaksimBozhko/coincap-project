@@ -1,8 +1,9 @@
 import axios from "axios"
+import { AUTHORIZATION_TOKEN, BASE_URL } from "./constants"
 
 export const instance = axios.create({
-  baseURL: "https://api.coincap.io/v2/",
+  baseURL: BASE_URL,
   headers: {
-    "Authorization": `Bearer d61c88ba-54be-4245-9c1f-ef302ccd73c9`,
+    Authorization: `Bearer ${AUTHORIZATION_TOKEN}`
   }
 })

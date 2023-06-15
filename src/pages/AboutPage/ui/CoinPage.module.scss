@@ -1,5 +1,4 @@
 .page {
-
   .box {
     display: flex;
     flex-direction: row;
@@ -13,6 +12,11 @@
     .time {
       color: #9d9c9c;
       font-size: 15px;
+    }
+
+    .btn {
+      max-width: 100px;
+      width: 100%;
     }
 
     .info {

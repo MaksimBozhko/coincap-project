@@ -6,7 +6,7 @@ export type DataItemType = {
 export type InitStateType = {
   priceUsd: string[]
   time: number[]
-  startDayHistory: string,
+  startDayHistory: string
   interval: string
 }
 
@@ -19,5 +19,4 @@ export type RequestType = {
   end: number
 }
 
-export type ResponseDataHistoryType =  DataItemType[]
-
+export type ResponseDataHistoryType = DataItemType[]

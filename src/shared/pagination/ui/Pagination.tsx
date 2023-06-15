@@ -13,19 +13,17 @@ type PaginationType = {
   onPageChange?: (pageNumber: number) => void
 }
 
-export const Pagination = ({
-                             totalUserCount = 100,
-                             pageSize = 4,
-                             portionSize = 3,
-                             onPageChange
-                           }: PaginationType) => {
+export const Pagination = ({ totalUserCount = 100, pageSize = 4, portionSize = 3, onPageChange }: PaginationType) => {
   const pageCount = Math.ceil(totalUserCount / pageSize)
   let pages = []
   for (let i = 1; i <= pageCount; i++) {
     pages.push(i)
   }
 
-  const { search: { page }, setSearchParams } = useParam()
+  const {
+    search: { page },
+    setSearchParams
+  } = useParam()
 
   const portionCount = Math.ceil(pageCount / portionSize)
   const [portionNumber, setPortionNumber] = useState(1)
@@ -48,26 +46,24 @@ export const Pagination = ({
     setPortionNumber(portionNumber + 1)
     setSearchParams({ page: leftPortionPageNumber + portionSize })
   }
-  return <div className={s.pagination}>
-    <button
-      className={s.page}
-      onClick={onClickLeftIconHandler}
-      disabled={portionNumber <= 1}>
-      <ArrowLeftIcon className={classNames(s.icon, { [s.disabled]: portionNumber <= 1 })} />
-    </button>
-    {
-      pages
+  return (
+    <div className={s.pagination}>
+      <button className={s.page} onClick={onClickLeftIconHandler} disabled={portionNumber <= 1}>
+        <ArrowLeftIcon className={classNames(s.icon, { [s.disabled]: portionNumber <= 1 })} />
+      </button>
+      {pages
         .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-        .map((p) => <span key={p}
-                          onClick={() => onClickSelectedPage(p)}
-                          className={classNames(s.page, { [s.selected]: +page == p })}>
-        {p}</span>)
-    }
-    <button
-      className={s.page}
-      onClick={onClickRightIconHandler}
-      disabled={portionCount <= portionNumber}>
-      <ArrowRightIcon className={classNames(s.icon, { [s.disabled]: portionCount <= portionNumber })} />
-    </button>
-  </div>
+        .map(p => (
+          <span
+            key={p}
+            onClick={() => onClickSelectedPage(p)}
+            className={classNames(s.page, { [s.selected]: +page == p })}>
+            {p}
+          </span>
+        ))}
+      <button className={s.page} onClick={onClickRightIconHandler} disabled={portionCount <= portionNumber}>
+        <ArrowRightIcon className={classNames(s.icon, { [s.disabled]: portionCount <= portionNumber })} />
+      </button>
+    </div>
+  )
 }

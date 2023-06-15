@@ -3,19 +3,13 @@ import classNames, { Mods } from "shared/lib/classNames/classNames"
 import { Portal } from "../portal/Portal"
 import s from "./modal.module.scss"
 
-
 type ModalPropsType = {
   className?: string
   children?: ReactNode
   isOpen?: boolean
   onClose?: () => void
-};
-export const Modal = ({
-                        isOpen = true,
-                        onClose,
-                        className,
-                        children
-                      }: ModalPropsType) => {
+}
+export const Modal = ({ isOpen = true, onClose, className, children }: ModalPropsType) => {
   const [isClosing, setIsClosing] = useState<boolean>(false)
 
   // eslint-disable-next-line no-undef
@@ -35,11 +29,14 @@ export const Modal = ({
     e.stopPropagation()
   }
 
-  const onKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      closeHandler()
-    }
-  }, [closeHandler])
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeHandler()
+      }
+    },
+    [closeHandler]
+  )
 
   useEffect(() => {
     if (isOpen) {

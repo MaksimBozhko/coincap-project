@@ -1,10 +1,9 @@
 import React, { memo, useEffect, useRef, useState } from "react"
 import { NavLink } from "react-router-dom"
-import { TableRowProps } from "../../model/slices/types"
+import classNames from "shared/lib/classNames/classNames"
 import { getRowPrice } from "../../model/helpers/getRowPrice"
 import s from "./TableRow.module.scss"
-import classNames from "shared/lib/classNames/classNames"
-
+import { TableRowProps } from "../../model/types"
 
 export const TableRow = memo(({ data, setValue }: TableRowProps) => {
   const [isActive, setIsActive] = useState<string | null>(null)
@@ -40,11 +39,13 @@ export const TableRow = memo(({ data, setValue }: TableRowProps) => {
             )
           }
           if (index === 1) {
-            return <td key={`${item}_${index}`}>
-              <NavLink to={data.id}>
-                {item}
-              </NavLink>
-            </td>
+            return (
+              <td key={`${item}_${index}`}>
+                <NavLink to={data.id} className={s.link}>
+                  {item}
+                </NavLink>
+              </td>
+            )
           }
           return <td key={`${item}_${index}`}>{item}</td>
         })}

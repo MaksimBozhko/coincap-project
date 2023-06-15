@@ -4,15 +4,13 @@ import { coinsActions } from "./slice"
 export const coinApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.coincap.io/v2' }),
   endpoints: (builder) => ({
-    getPrices: builder.query<any, string[]>({
-      query: (assets) => `prices?assets=${assets.join(',')}`,
+    getPrices: builder.query<any, void>({
+      query: () => `prices`,
       async onQueryStarted(_, { dispatch }) {
-        const pricesWs = new WebSocket('wss://ws.coincap.io/prices?assets=bitcoin');
-
-
+        const pricesWs = new WebSocket(`wss://ws.coincap.io/prices?assets=ALL`);
         pricesWs.onmessage = function (msg) {
           const data = JSON.parse(msg.data);
-          console.log(data)
+
           dispatch(coinsActions.setPrices(data));
         };
       },

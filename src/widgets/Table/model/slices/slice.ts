@@ -54,11 +54,37 @@ const slice = createSlice({
     removeCoins: (state, action: PayloadAction<string>) => {
       state.case = state.case.filter(item => item.name !== action.payload)
     },
-    setPrices: (state, action: PayloadAction<{ bitcoin: string }>) => {
-      state.coins = state.coins.map((coin) => coin.name.toLowerCase() === "bitcoin"
-        ? { ...coin, priceUsd: action.payload["bitcoin"] }
-        : coin)
-
+    setPrices: (state, action: PayloadAction<{ [key: string]: string }>) => {
+      // state.coins = state.coins.map((coin) => coin.name.toLowerCase() === "bitcoin"
+      //   ? { ...coin, priceUsd: action.payload["bitcoin"] }
+      //   : coin)
+      console.log(action.payload)
+      state.coins = state.coins.map((coin) => {
+        // eslint-disable-next-line no-debugger
+        // debugger
+        // eslint-disable-next-line no-prototype-builtins
+        if (action.payload.hasOwnProperty(coin.name.toLowerCase())) {
+          const priceUsd = action.payload[coin.name.toLowerCase()];
+          return  { ...coin, priceUsd };
+        }
+        return coin
+      })
+      // const updatedCoins = state.coins.reduce((acc, coin) => {
+      //   const { name } = coin;
+      //
+      //   // eslint-disable-next-line no-prototype-builtins
+      //   if (action.payload.hasOwnProperty(name.toLowerCase())) {
+      //     const priceUsd = action.payload[name.toLowerCase()];
+      //     const updatedCoin = { ...coin, priceUsd };
+      //     // @ts-ignore
+      //     acc.push(updatedCoin);
+      //   } else {
+      //     // @ts-ignore
+      //     acc.push(coin);
+      //   }
+      //   return acc;
+      // }, []);
+      // state.coins = updatedCoins;
     }
   },
   extraReducers: builder => {

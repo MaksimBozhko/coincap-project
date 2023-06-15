@@ -49,7 +49,7 @@ export const Table = ({ customClass }: TableProps) => {
         </thead>
         <tbody>
         {coins.map((item) => {
-          return <TableRow key={`${item.rank}`} cal={setValue} data={item} />
+          return <TableRow key={`${item.rank}`} setValue={setValue} data={item} />
         })}
         </tbody>
       </table>

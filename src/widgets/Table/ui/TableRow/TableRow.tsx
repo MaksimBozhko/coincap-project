@@ -1,25 +1,25 @@
 import React, { memo, useEffect, useRef, useState } from "react"
-import { ItemType } from "../../model/slices/types"
-import { getRowPrice } from "../../model/helpers/getRowPrice"
 import { NavLink } from "react-router-dom"
+import { TableRowProps } from "../../model/slices/types"
+import { getRowPrice } from "../../model/helpers/getRowPrice"
 import s from "./TableRow.module.scss"
 import classNames from "shared/lib/classNames/classNames"
 
-interface TableRowProps {
-  data: ItemType
-  cal: (name: string) => void
-}
 
-export const TableRow = memo(({ data, cal }: TableRowProps) => {
-  const [isActive, setIsActive] = useState("")
+export const TableRow = memo(({ data, setValue }: TableRowProps) => {
+  const [isActive, setIsActive] = useState<string | null>(null)
   const changeFlag = useRef("")
 
   const rowArr = getRowPrice(data)
   const handleCellPlusClick = () => {
-    cal(data.name)
+    setValue(data.name)
   }
+
   useEffect(() => {
-    setIsActive((+data.priceUsd - +changeFlag.current > 0) ? "green" : "red")
+    if (isActive !== null) {
+      setIsActive(+data.priceUsd - +changeFlag.current > 0 ? "green" : "red")
+    }
+    changeFlag.current = data.priceUsd
     const timeout = setTimeout(() => {
       setIsActive("")
     }, 500)
@@ -27,9 +27,10 @@ export const TableRow = memo(({ data, cal }: TableRowProps) => {
       clearTimeout(timeout)
     }
   }, [data])
+
   return (
     <>
-      <tr className={classNames("", { [s.red]: isActive === "red", [s.green]: isActive === "green" })}>
+      <tr className={classNames("", { [s.green]: isActive === "green", [s.red]: isActive === "red" })}>
         {rowArr.map((item, index) => {
           if (index === rowArr.length - 1) {
             return (

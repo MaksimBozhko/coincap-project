@@ -41,3 +41,8 @@ export type QueryParamType = {
   search?: string
   offset?: number
 }
+
+export type TableRowProps = {
+  data: ItemType
+  setValue: (name: string) => void
+}

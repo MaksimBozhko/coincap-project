@@ -7,33 +7,33 @@
 
   @keyframes background-red {
     0% {
-      background-color: #f1f1f1; // Начальный цвет фона
+      background-color: #f1f1f1;
     }
     50% {
-      background-color: #fd8282; // Промежуточный цвет фона
+      background-color: #fd8282;
     }
     100% {
-      background-color: #f1f1f1; // Конечный цвет фона
+      background-color: #f1f1f1;
     }
   }
 }
 
 .green {
-  background-color: #f1f1f1; // Здесь можно указать начальный цвет фона
+  background-color: #f1f1f1;
 
   // Анимация заднего фона
   animation: background-green 0.5s linear infinite;
   animation-iteration-count: 1;
 
-  @keyframes background-green {
+  @keyframes background-green{
     0% {
-      background-color: #f1f1f1; // Начальный цвет фона
+      background-color: #f1f1f1;
     }
     50% {
-      background-color: #76ff6d; // Промежуточный цвет фона
+      background-color: #76ff6d;
     }
     100% {
-      background-color: #f1f1f1; // Конечный цвет фона
+      background-color: #f1f1f1;
     }
   }
 }

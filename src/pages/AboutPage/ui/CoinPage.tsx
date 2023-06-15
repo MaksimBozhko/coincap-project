@@ -32,6 +32,7 @@ const CoinPage = () => {
   const interval = useSelector(getIntervalTime(INTERVAL_VALUE))
   const item = useSelector(getCoin)
   const { id } = useParams()
+  console.log(id)
 
   const { setValue, onBuyCoinsHandler, value, onCloseModal } = useAddModalCoin()
 

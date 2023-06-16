@@ -1,5 +1,4 @@
 import React, { memo, useEffect, useRef, useState } from "react"
-import { NavLink } from "react-router-dom"
 import classNames from "shared/lib/classNames/classNames"
 import { getRowPrice } from "../../model/helpers/getRowPrice"
 import s from "./TableRow.module.scss"
@@ -41,9 +40,9 @@ export const TableRow = memo(({ data, setValue }: TableRowProps) => {
           if (index === 1) {
             return (
               <td key={`${item}_${index}`}>
-                <NavLink to={`/${data.id}`} className={s.link}>
+                <a href={`/${data.id}`} className={s.link}>
                   {item}
-                </NavLink>
+                </a>
               </td>
             )
           }

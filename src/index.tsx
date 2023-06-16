@@ -9,7 +9,7 @@ import { store } from "./app/store"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
-  <BrowserRouter basename={'coincap-project'}>
+  <BrowserRouter>
     <Provider store={store}>
       <App />
     </Provider>

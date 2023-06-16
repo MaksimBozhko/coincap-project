@@ -21,10 +21,11 @@ export const Header = () => {
   return (
     <div className={s.header}>
       <div className={s.container}>
-        <PopularCoins />
         <SuperButton className={s.btn} onClick={clickBtnHandler}>
           WALLET
         </SuperButton>
+        <PopularCoins />
+
         <StateCase />
       </div>
       {!!value && <WalletModal name={value} callback={onBuyCoinsHandler} onClose={onCloseModal} />}

@@ -4,26 +4,22 @@ import s from "./pagination.module.scss"
 import { ReactComponent as ArrowLeftIcon } from "../model/img/arrowLeft.svg"
 import { ReactComponent as ArrowRightIcon } from "../model/img/arrowRight.svg"
 import classNames from "../../lib/classNames/classNames"
-import { useParam } from "../../hooks/useParam"
 
 type PaginationType = {
+  page: number
   totalUserCount?: number
   portionSize?: number
   pageSize?: number
-  onPageChange?: (pageNumber: number) => void
+  onPageChange: (pageNumber: number) => void
 }
 
-export const Pagination = ({ totalUserCount = 100, pageSize = 4, portionSize = 3, onPageChange }: PaginationType) => {
+export const Pagination = ({ totalUserCount = 100, pageSize = 4, portionSize = 3, onPageChange, page }: PaginationType) => {
+
   const pageCount = Math.ceil(totalUserCount / pageSize)
   let pages = []
   for (let i = 1; i <= pageCount; i++) {
     pages.push(i)
   }
-
-  const {
-    search: { page },
-    setSearchParams
-  } = useParam()
 
   const portionCount = Math.ceil(pageCount / portionSize)
   const [portionNumber, setPortionNumber] = useState(1)
@@ -33,18 +29,18 @@ export const Pagination = ({ totalUserCount = 100, pageSize = 4, portionSize = 3
   const onClickSelectedPage = (pageNumber: number) => {
     onPageChange && onPageChange(pageNumber)
     if (pageNumber) {
-      setSearchParams({ page: pageNumber })
+      onPageChange(pageNumber - 1)
     }
   }
 
   const onClickLeftIconHandler = () => {
     setPortionNumber(portionNumber - 1)
-    setSearchParams({ page: rightPortionPageNumber - portionSize })
+    onPageChange(rightPortionPageNumber - portionSize - 1)
   }
 
   const onClickRightIconHandler = () => {
     setPortionNumber(portionNumber + 1)
-    setSearchParams({ page: leftPortionPageNumber + portionSize })
+    onPageChange(leftPortionPageNumber + portionSize - 1)
   }
   return (
     <div className={s.pagination}>
@@ -57,7 +53,7 @@ export const Pagination = ({ totalUserCount = 100, pageSize = 4, portionSize = 3
           <span
             key={p}
             onClick={() => onClickSelectedPage(p)}
-            className={classNames(s.page, { [s.selected]: +page == p })}>
+            className={classNames(s.page, { [s.selected]: page + 1 == p })}>
             {p}
           </span>
         ))}

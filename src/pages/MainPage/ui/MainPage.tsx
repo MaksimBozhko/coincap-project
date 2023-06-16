@@ -1,6 +1,5 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { useParam } from "shared/hooks/useParam"
 import { useActions } from "shared/hooks/useActions"
 import { Table } from "widgets/Table"
 import { Loader } from "shared/Loader"
@@ -14,18 +13,18 @@ import s from "./MainPage.module.scss"
 const MainPage = () => {
   const coins = useSelector(getCoins)
   const { getItems } = useActions(coinsThunks)
-  const { search } = useParam()
+  const [page, setPage] = useState(0)
 
   useEffect(() => {
-    getItems({ limit: LIMIT, offset: --search.page * LIMIT })
-  }, [search.page])
+    getItems({ limit: LIMIT, offset: page * LIMIT })
+  }, [page])
 
   useGetPricesQuery()
   if (!coins.length) return <Loader />
   return (
     <div className={s.page}>
       <Table />
-      <Pagination />
+      <Pagination page={page} onPageChange={setPage} />
     </div>
   )
 }

@@ -38,7 +38,7 @@ export const AddModal: FC<DeletePropsType> = ({ name, isOpen, onClose, className
           Cancel
         </SuperButton>
         <SuperButton className={s.btn} onClick={onAddHandler}>
-          Buy
+          Buysdcsdcsdc
         </SuperButton>
       </div>
     </Modal>

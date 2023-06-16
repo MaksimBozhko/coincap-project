@@ -40,7 +40,7 @@ export const TableRow = memo(({ data, setValue }: TableRowProps) => {
           if (index === 1) {
             return (
               <td key={`${item}_${index}`}>
-                <a href={`/${data.id}`} className={s.link}>
+                <a href={data.id} className={s.link}>
                   {item}
                 </a>
               </td>

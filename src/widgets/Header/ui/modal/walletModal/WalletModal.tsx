@@ -4,7 +4,7 @@ import { ReactComponent as Close } from "widgets/Header/ui/modal/walletModal/img
 import classNames from "shared/lib/classNames/classNames"
 import { Modal } from "shared/modal/Modal"
 import { useSelector } from "react-redux"
-import { RootState } from "../../../../../app/store/store"
+import { RootState } from "app/store/store"
 import { getPrice } from "../../../../Table/model/helpers/getPrice"
 import { WalletModalPropsType } from "./types"
 

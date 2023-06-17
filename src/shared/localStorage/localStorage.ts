@@ -5,7 +5,7 @@ export const loadState = () => {
   try {
     const persistedTodoString = localStorage.getItem(LOCAL_STORAGE_KEY)
     if (persistedTodoString === null) return undefined
-    return { coins: { case: JSON.parse(persistedTodoString), coins: [], coin: {} as ItemType }}
+    return { coins: { case: JSON.parse(persistedTodoString), coins: [], coin: {} as ItemType, error: "" }}
   } catch (err) {
     return undefined
   }

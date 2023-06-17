@@ -4,5 +4,7 @@ import { LoaderType } from "../model/types"
 import classNames from "../../lib/classNames/classNames"
 
 export const Loader = ({ className }: LoaderType) => {
-  return <div className={classNames(s.loader, [className])}></div>
+  return <div className={s.load}>
+    <div className={classNames(s.loader, [className])}></div>
+  </div>
 }

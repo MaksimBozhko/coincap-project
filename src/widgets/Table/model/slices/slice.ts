@@ -4,11 +4,14 @@ import { coinsAPI } from "../../api/api"
 import { InitStateType, ItemType, PricesType, QueryParamType, SetCoinsType } from "../types"
 import { chartThunks } from "shared/charts/areaChart/model/slices/slice"
 import { RequestType } from "shared/charts/areaChart/model/slices/types"
+import axios, { AxiosError } from "axios"
+import { handleServerNetworkError } from "../../../../shared/utils/handle-server-network-error"
 
 export const initialState: InitStateType = {
   coins: [],
   case: [],
-  coin: {} as ItemType
+  coin: {} as ItemType,
+  error: ''
 }
 
 //thunks
@@ -28,6 +31,7 @@ const getItem = createAppAsyncThunk<ItemType, RequestType>(
       dispatch(chartThunks.getHistoryData(arg))
       return res.data.data
     } catch (e) {
+      handleServerNetworkError(e, dispatch)
       return rejectWithValue(e)
     }
   }
@@ -39,9 +43,6 @@ const slice = createSlice({
   reducers: {
     setCoins: (state, action: PayloadAction<SetCoinsType>) => {
       const { count, name } = action.payload
-      // eslint-disable-next-line no-debugger
-      // debugger
-      console.log(current(state.coins))
       const coin = state.coins.find(item => item.name === name)
       const isMatch = state.case.find(item => item.name === coin?.name)
       if (isMatch) {
@@ -63,8 +64,10 @@ const slice = createSlice({
         }
         return coin
       })
-
-    }
+    },
+    setError: (state, action: PayloadAction<{ error: string | null }>) => {
+      state.error = action.payload.error
+    },
   },
   extraReducers: builder => {
     builder

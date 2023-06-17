@@ -16,4 +16,5 @@
 .root {
   @include PageContainer;
   padding-top: 130px;
+  min-height: 100vh;
 }

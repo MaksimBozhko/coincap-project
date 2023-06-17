@@ -1,0 +1,14 @@
+@import "src/app/styles/mixins/mixins";
+
+.blockText {
+  @include FlexCenter(column, center, center, 30px);
+
+  .text {
+    padding-top: 100px;
+    @include FontStyle(600, 30px, 30px)
+  }
+
+  .textError {
+    @include FontStyle(500, 20px, 20px)
+  }
+}

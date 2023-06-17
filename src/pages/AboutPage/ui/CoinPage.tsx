@@ -8,7 +8,7 @@ import { GoBackButton } from "shared/GoBackButton/GoBackButton"
 import { AddModal } from "widgets/Table/ui/TableRow/modal/addModal/AddModal"
 import { useActions } from "shared/hooks/useActions"
 import { useAddModalCoin } from "shared/hooks/useAddModalCoin"
-import { coinsThunks } from "widgets/Table/model/slices/slice"
+import { coinsActions, coinsThunks } from "widgets/Table/model/slices/slice"
 import { getTime } from "shared/components/Time/getTime"
 import {
   getDataChartPrice,
@@ -20,19 +20,20 @@ import { getCurrentTimeinterval } from "shared/charts/areaChart/model/getTimeInt
 import { getPrice } from "widgets/Table/model/helpers/getPrice"
 import { getVolumePrice } from "widgets/Table/model/helpers/getVolumePrice"
 import { DAYS_VALUE, INTERVAL_VALUE } from "widgets/SelectBlock/model/constants"
-import { getCoin } from "widgets/Table/model/slices/selectors"
+import { getCoin, getError } from "widgets/Table/model/slices/selectors"
 import s from "./CoinPage.module.scss"
 import { Loader } from "../../../shared/Loader"
+import { NotFound } from "../../../shared/NotFound"
 
 const CoinPage = () => {
   const { getItem } = useActions(coinsThunks)
   const priceUsd = useSelector(getDataChartPrice)
+  const error = useSelector(getError)
   const time = useSelector(getDataChartTime)
   const dayAgo = useSelector(getStartTimeHistory(DAYS_VALUE))
   const interval = useSelector(getIntervalTime(INTERVAL_VALUE))
   const item = useSelector(getCoin)
   const { id } = useParams()
-  console.log(id)
 
   const { setValue, onBuyCoinsHandler, value, onCloseModal } = useAddModalCoin()
 
@@ -42,6 +43,7 @@ const CoinPage = () => {
     getItem({ id: id!, interval: interval!.title, start: timeHoursAgo, end: currentTime })
   }, [id, interval, timeHoursAgo])
 
+  if (error) return <NotFound message={error}/>
   if (!item.name) return <Loader />
   return (
     <>

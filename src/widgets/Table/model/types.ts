@@ -28,6 +28,7 @@ export type InitStateType = {
   coins: ItemType[]
   case: CaseItemType[]
   coin: ItemType
+  error: string | null
 }
 
 export type SetCoinsType = {

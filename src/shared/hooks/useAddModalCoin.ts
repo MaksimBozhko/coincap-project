@@ -6,6 +6,7 @@ export const useAddModalCoin = () => {
   const { setCoins } = useActions(coinsActions)
   const [value, setValue] = useState("")
   const onBuyCoinsHandler = (count: number) => {
+    console.log(typeof count)
     setCoins({ count, name: value })
   }
   const onCloseModal = () => {

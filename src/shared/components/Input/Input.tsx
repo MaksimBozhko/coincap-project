@@ -15,5 +15,5 @@ export const Input = ({ className, setValue, value }: InputProps) => {
       setValue(inputValue)
     }
   }
-  return <input className={classNames(s.input, [className])} value={value} onChange={clickInputHandler} />
+  return <input type={'number'} className={classNames(s.input, [className])} value={value} onChange={clickInputHandler} />
 }

@@ -3,7 +3,7 @@ import classNames from "shared/lib/classNames/classNames"
 import { getRowPrice } from "../../model/helpers/getRowPrice"
 import s from "./TableRow.module.scss"
 import { TableRowProps } from "../../model/types"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 export const TableRow = memo(({ data, setValue }: TableRowProps) => {
   const [isActive, setIsActive] = useState<string | null>(null)
@@ -41,9 +41,9 @@ export const TableRow = memo(({ data, setValue }: TableRowProps) => {
           if (index === 1) {
             return (
               <td key={`${item}_${index}`}>
-                <NavLink to={data.id} className={s.link}>
+                <Link to={data.id} className={s.link}>
                   {item}
-                </NavLink>
+                </Link>
               </td>
             )
           }

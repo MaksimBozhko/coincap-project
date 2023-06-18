@@ -4,8 +4,9 @@
   width: 100%;
   top: 0;
 
+
   align-items: center;
-  height: 84px;
+  min-height: 84px;
   background-color: #ffffff;
 }
 
@@ -14,6 +15,8 @@
   align-items: center;
   justify-content: space-between;
   margin: auto;
+  gap: 10px;
+  flex-wrap: wrap;
   max-width: 1146px;
   padding: 0 15px;
   width: 100%;
@@ -24,8 +27,11 @@
   width: 100%;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 520px) {
   .container {
-    justify-content: space-between;
+    justify-content: space-around;
+    .popularCoins {
+      align-self: end;
+    }
   }
 }

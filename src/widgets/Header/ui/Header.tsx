@@ -25,8 +25,9 @@ export const Header = () => {
           WALLET
         </SuperButton>
         <PopularCoins />
-
-        <StateCase />
+        <div className={s.popularCoins}>
+          <StateCase />
+        </div>
       </div>
       {!!value && <WalletModal name={value} callback={onBuyCoinsHandler} onClose={onCloseModal} />}
     </div>

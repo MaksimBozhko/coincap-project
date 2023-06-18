@@ -3,7 +3,7 @@ import classNames from "shared/lib/classNames/classNames"
 import { getRowPrice } from "../../model/helpers/getRowPrice"
 import s from "./TableRow.module.scss"
 import { TableRowProps } from "../../model/types"
-import { Link, NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export const TableRow = memo(({ data, setValue }: TableRowProps) => {
   const [isActive, setIsActive] = useState<string | null>(null)
@@ -28,28 +28,26 @@ export const TableRow = memo(({ data, setValue }: TableRowProps) => {
   }, [data])
 
   return (
-    <>
-      <tr className={classNames("", { [s.green]: isActive === "green", [s.red]: isActive === "red" })}>
-        {rowArr.map((item, index) => {
-          if (index === rowArr.length - 1) {
-            return (
-              <td key={`${item}_${index}`} onClick={handleCellPlusClick}>
+    <tr className={classNames(s.row, { [s.green]: isActive === "green", [s.red]: isActive === "red" })}>
+      {rowArr.map((item, index) => {
+        if (index === rowArr.length - 1) {
+          return (
+            <td key={`${item}_${index}`} onClick={handleCellPlusClick}>
+              {item}
+            </td>
+          )
+        }
+        if (index === 1) {
+          return (
+            <td key={`${item}_${index}`}>
+              <Link to={data.id} className={s.link}>
                 {item}
-              </td>
-            )
-          }
-          if (index === 1) {
-            return (
-              <td key={`${item}_${index}`}>
-                <Link to={data.id} className={s.link}>
-                  {item}
-                </Link>
-              </td>
-            )
-          }
-          return <td key={`${item}_${index}`}>{item}</td>
-        })}
-      </tr>
-    </>
+              </Link>
+            </td>
+          )
+        }
+        return <td className={s.item} key={`${item}_${index}`}>{item}</td>
+      })}
+    </tr>
   )
 })

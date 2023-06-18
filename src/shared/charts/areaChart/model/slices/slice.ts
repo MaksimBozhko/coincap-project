@@ -7,7 +7,7 @@ export const initialState: InitStateType = {
   priceUsd: [],
   time: [],
   startDayHistory: "2",
-  interval: "4"
+  interval: "6"
 }
 
 //thunks

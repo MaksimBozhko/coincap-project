@@ -2,4 +2,8 @@
 
 .block {
   @include FlexCenter("row", "space-between", "center", 20px);
+
+  @media screen and (max-width: 780px) {
+    @include FlexCenter(column);
+  }
 }

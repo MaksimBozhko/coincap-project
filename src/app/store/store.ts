@@ -1,7 +1,7 @@
 import { AnyAction, combineReducers, configureStore, ThunkDispatch } from "@reduxjs/toolkit"
 import { loadState, saveState } from "shared/localStorage/localStorage"
 import { coinsSlice } from "../../widgets/Table/model/slices/slice"
-import { chartSlice } from "../../shared/charts/areaChart/model/slices/slice"
+import { chartSlice } from "../../shared/charts/model/slice"
 import { coinApi } from "widgets/Table/model/slices/coinApi"
 import { LOCAL_STORAGE_KEY } from "../../shared/localStorage/types"
 

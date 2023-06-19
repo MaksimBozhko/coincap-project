@@ -1,6 +1,6 @@
 import React from "react"
 import s from "./Loader.module.scss"
-import { LoaderType } from "../model/types"
+import { LoaderType } from "../types"
 import classNames from "../../lib/classNames/classNames"
 
 export const Loader = ({ className }: LoaderType) => {

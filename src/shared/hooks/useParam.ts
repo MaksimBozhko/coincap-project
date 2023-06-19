@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom"
-import { getSearchParams } from "../getSearchParams/getSearchParams"
+import { getSearchParams } from "../utils/getSearchParams"
 
 export const useParam = () => {
   const [searchParams, setSearchParams]: [URLSearchParams, Function] = useSearchParams()

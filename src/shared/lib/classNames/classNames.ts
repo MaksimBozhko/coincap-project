@@ -6,7 +6,7 @@ const classNames = (
   className: string,
   mods: {
     [p: number]:
-      | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+      | React.ReactElement
       | string
       | number
       | Iterable<React.ReactNode>

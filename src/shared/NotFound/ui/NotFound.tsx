@@ -1,5 +1,5 @@
 import React from "react"
-import { GoBackButton } from "../../GoBackButton/GoBackButton"
+import { GoBackButton } from "../../GoBackButton"
 import s from './NotFound.module.scss'
 
 export type NotFoundType = {

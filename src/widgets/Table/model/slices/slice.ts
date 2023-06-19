@@ -1,21 +1,20 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit"
-import { createAppAsyncThunk } from "shared/utils/create-app-async-thunk"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createAppAsyncThunk } from "shared/utils/createAppAsyncThunk"
 import { coinsAPI } from "../../api/api"
 import { InitStateType, ItemType, PricesType, QueryParamType, SetCoinsType } from "../types"
-import { chartThunks } from "shared/charts/areaChart/model/slices/slice"
-import { RequestType } from "shared/charts/areaChart/model/slices/types"
-import axios, { AxiosError } from "axios"
-import { handleServerNetworkError } from "../../../../shared/utils/handle-server-network-error"
+import { chartThunks } from "shared/charts/model/slice"
+import { RequestType } from "shared/charts/model/types"
+import { handleServerNetworkError } from "../../../../shared/utils/handleServerNetworkError"
 
 export const initialState: InitStateType = {
   coins: [],
   case: [],
   coin: {} as ItemType,
-  error: ''
+  error: ""
 }
 
 //thunks
-const getItems = createAppAsyncThunk<any, QueryParamType>("coins/getItems", async (arg, { rejectWithValue }) => {
+const getItems = createAppAsyncThunk<ItemType[], QueryParamType>("coins/getItems", async (arg, { rejectWithValue }) => {
   try {
     const res = await coinsAPI.items(arg)
     return res.data.data
@@ -67,12 +66,12 @@ const slice = createSlice({
     },
     setError: (state, action: PayloadAction<{ error: string | null }>) => {
       state.error = action.payload.error
-    },
+    }
   },
   extraReducers: builder => {
     builder
       .addCase(getItems.fulfilled, (state, { payload }) => {
-        state.coins = payload.map((item: ItemType) => ({
+        state.coins = payload.map(item => ({
           id: item.id,
           rank: item.rank,
           name: item.name,

@@ -1,12 +1,12 @@
 import React from "react"
 import { PopularCoins } from "../../PopularCoins"
-import SuperButton from "shared/components/superButton/SuperButton"
 import { StateCase } from "../../StateCase"
-import { WalletModal } from "./modal/walletModal/WalletModal"
+import { WalletModal } from "shared/modal/walletModal/ui/WalletModal"
 import { useAddModalCoin } from "shared/hooks/useAddModalCoin"
 import { useActions } from "shared/hooks/useActions"
 import { coinsActions } from "../../Table/model/slices/slice"
 import s from "./Header.module.scss"
+import { SuperButton } from "shared/superButton"
 
 export const Header = () => {
   const { removeCoins } = useActions(coinsActions)

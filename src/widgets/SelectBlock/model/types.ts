@@ -1,4 +1,4 @@
-import { IntervalType } from "../../../shared/charts/areaChart/model/slices/types"
+import { IntervalType } from "../../../shared/charts/model/types"
 
 export type SelectBlockType = {
   interval: string

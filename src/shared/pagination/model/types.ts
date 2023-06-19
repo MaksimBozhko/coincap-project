@@ -1,6 +1,5 @@
 export type PaginationType = {
-  totalUserCount: number
-  currentPage: number
+  totalUserCount?: number
   portionSize?: number
   pageSize?: number
   onPageChange?: (pageNumber: number) => void
